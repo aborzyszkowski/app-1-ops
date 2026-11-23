@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Gracze online') {
             steps {
@@ -10,6 +9,11 @@ pipeline {
         stage('Nowosci od tworcow') {
             steps {
                 powershell './steam/nowosci.ps1'
+            }
+        }
+        stage('Opinie graczy') {
+            steps {
+                powershell './steam/opinie.ps1'
             }
         }
     }
