@@ -1,18 +1,15 @@
 pipeline {
-  agent any
-  stages {
+    agent any
+
+    stages {
         stage('Gracze online') {
             steps {
-                powershell '''
-                    $ErrorActionPreference = 'Stop'
-                    $appid = 570
-
-                    $url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=$appid"
-                    $json = Invoke-RestMethod -Uri $url -UseBasicParsing -TimeoutSec 20
-
-                    Write-Output "AppID: $appid (DOTA 2)"
-                    Write-Output "Gracze online: $($json.response.player_count)"
-                '''
+                powershell './steam/gracze.ps1'
+            }
+        }
+        stage('Nowosci od tworcow') {
+            steps {
+                powershell './steam/nowosci.ps1'
             }
         }
     }
