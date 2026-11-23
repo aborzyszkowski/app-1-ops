@@ -1,9 +1,4 @@
 $ErrorActionPreference = 'Stop'
 $appid = 570
-
-$url = "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=$appid&count=1&maxlength=300&feeds=steam_community_announcements"
-$json = Invoke-RestMethod -Uri $url -UseBasicParsing -TimeoutSec 20
-
-$news = $json.appnews.newsitems[0]
-Write-Output "Tytul: $($news.title)"
-Write-Output "URL: $($news.url)"
+$dane = Invoke-RestMethod -Uri "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=$appid" -UseBasicParsing -TimeoutSec 20
+Write-Output "Steam $appid | gracze teraz: $($dane.response.player_count)"
