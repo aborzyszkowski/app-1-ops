@@ -6,9 +6,16 @@ pipeline {
         booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Czy wykonać etap wdrożenia (Deploy)?')
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: "${params.BRANCH}",
+                    url: 'https://github.com/PeterPorzuczek/TimeRiddle.git'
+            }
+        }
         stage('Example') {
             steps {
                 echo "${params.GREETING}, we are building the ${params.BRANCH} branch."
+                bat 'git log -1 --oneline'
             }
         }
         stage('Deploy') {
