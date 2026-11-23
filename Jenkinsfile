@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(name: 'GREETING', defaultValue: 'Hello', description: 'The greeting message')
         choice(name: 'BRANCH', choices: ['master', 'dev'], description: 'Branch to build')
-        booleanParam(name: 'DEPLOY', defaultValue: true, destription: 'Czy wykonać etap wdrożenia(deploy)?')
+        booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Czy wykonać etap wdrożenia (Deploy)?')
     }
     stages {
         stage('Example') {
